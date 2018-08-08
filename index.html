@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+	
+	<style>
+
+        .container{
+            background: url('img/bg.png');
+        }
+		
+        /* increse tde text size for input */
+        input,
+        textarea {
+            font-size: 20px;
+        }
+
+        .card-less-tpdng {
+            padding-top: 4px;
+        }
+
+
+
+        /* make tde container fluid up to large screens */
+		@media (max-width: 992px) {
+			.container {
+				width: 100%;
+				max-width: none;
+			}
+		}
+		
+		
+		
+	</style>
+	
+	
+	
+</head>
+<body>
+
+    <div class="container">
+        <div class="jumbotron bg-info text-white text-center">
+            <div class="h2">Simplified Fiestel Cipher</div>
+        </div>
+        <!-- <div class="alert alert-info alert-dismissable show fade">Subkey 1 is missing..<span class="close" data-dismiss="alert">&times;</span></div> -->
+        <div class="row">
+            <!-- left-side options div -->
+            <div class="col-lg-4">
+                <div class="col-12">
+
+                    <label for="key" class="mt-2">Key: </label>
+                    <div class="input-group">
+                        <input type="text" name="key" id="key" class="form-control text-center" maxlength="8" placeholder="10101010" title="should be a binary string number." pattern="[01]{8}">
+                        <span class="input-group-btn"><button class="btn btn-info" id="key_gen">Random</button></span>
+                    </div>
+
+                    <label for="ip" class="mt-2">Initial Permutation: </label>
+                    <div class="input-group">
+                        <input type="text" name="ip" id="ip" class="form-control text-center" maxlength="8" placeholder="12345678" title="should contain numbers from 1 to 8 only." pattern="[1-8]{8}">
+                        <span class="input-group-btn"><button class="btn btn-info" id="ip_gen">Random</button></span>
+                    </div>
+                
+                    <label for="ip-inv" class="mt-2">Inverse Initial Permutation: </label>
+                    <input type="text" name="ip-inv" id="ip-inv" readonly class="form-control text-center" maxlength="8" placeholder="########" title="should contain numbers from 1 to 8 only." pattern="[1-8]{8}">
+
+                    <label for="rounds" class="mt-2">No of Rounds: </label>
+                    <input type="number" name="rounds" id="rounds" class="form-control text-center" value="1" min="1" max="99" placeholder="##" title="should contain numbers only.">
+
+
+                </div>
+
+                <div class="col-12 mt-3">
+
+                    <button class="btn btn-info btn-block" data-toggle="collapse" data-target="#sk-1">SubKey 1</button>
+                    
+                    <div class="collapse" id="sk-1">
+                        
+                        <div class="card card-body card-less-tpdng">
+                            <div class="row">
+                                <div class="col-12">
+                                    <button class="btn btn-info btn-sm float-right mb-2" id="sk-1_gen">random</button>
+                                </div>
+                            </div>
+                            <table id="subkey-1">
+                                <tr>
+                                    <td><input type="number" class="form-control text-center" min="0" max="3"></td>
+                                    <td><input type="number" class="form-control text-center" min="0" max="3"></td>
+                                    <td><input type="number" class="form-control text-center" min="0" max="3"></td>
+                                    <td><input type="number" class="form-control text-center" min="0" max="3"></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="number" class="form-control text-center" min="0" max="3"></td>
+                                    <td><input type="number" class="form-control text-center" min="0" max="3"></td>
+                                    <td><input type="number" class="form-control text-center" min="0" max="3"></td>
+                                    <td><input type="number" class="form-control text-center" min="0" max="3"></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="number" class="form-control text-center" min="0" max="3"></td>
+                                    <td><input type="number" class="form-control text-center" min="0" max="3"></td>
+                                    <td><input type="number" class="form-control text-center" min="0" max="3"></td>
+                                    <td><input type="number" class="form-control text-center" min="0" max="3"></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="number" class="form-control text-center" min="0" max="3"></td>
+                                    <td><input type="number" class="form-control text-center" min="0" max="3"></td>
+                                    <td><input type="number" class="form-control text-center" min="0" max="3"></td>
+                                    <td><input type="number" class="form-control text-center" min="0" max="3"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 mt-3">
+                    <button class="btn btn-info btn-block" data-toggle="collapse" data-target="#sk-2"> SubKey 2 </button>
+                    
+                    <div class="collapse" id="sk-2">
+                        <div class="card card-body card-less-tpdng">
+                            <div class="row">
+                                <div class="col-12">
+                                    <button class="btn btn-info btn-sm float-right mb-2" id="sk-2_gen">random</button>
+                                </div>
+                            </div>
+                            <table id="subkey-2">
+                                <tr>
+                                    <td><input type="number" class="form-control text-center" min="0" max="3"></td>
+                                    <td><input type="number" class="form-control text-center" min="0" max="3"></td>
+                                    <td><input type="number" class="form-control text-center" min="0" max="3"></td>
+                                    <td><input type="number" class="form-control text-center" min="0" max="3"></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="number" class="form-control text-center" min="0" max="3"></td>
+                                    <td><input type="number" class="form-control text-center" min="0" max="3"></td>
+                                    <td><input type="number" class="form-control text-center" min="0" max="3"></td>
+                                    <td><input type="number" class="form-control text-center" min="0" max="3"></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="number" class="form-control text-center" min="0" max="3"></td>
+                                    <td><input type="number" class="form-control text-center" min="0" max="3"></td>
+                                    <td><input type="number" class="form-control text-center" min="0" max="3"></td>
+                                    <td><input type="number" class="form-control text-center" min="0" max="3"></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="number" class="form-control text-center" min="0" max="3"></td>
+                                    <td><input type="number" class="form-control text-center" min="0" max="3"></td>
+                                    <td><input type="number" class="form-control text-center" min="0" max="3"></td>
+                                    <td><input type="number" class="form-control text-center" min="0" max="3"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- right-side input text div -->
+            <div class="col-lg-8 pb-5">
+                <div class="col-12 mt-3">
+                    <label for="plaintext">Plaintext:</label>
+                    <textarea name="plaintext" id="plaintext" class="form-control text-center" rows="6"></textarea>
+                </div>
+
+                <div class="col-12 mt-3 text-center">
+                    <button class="btn btn-info px-5" id="encrypt_btn">Encrypt</button>
+                </div>
+
+                <div class="col-12 mt-2">
+                    <label for="ciphertext">Ciphertext (binary text):</label>
+                    <textarea name="ciphertext" id="ciphertext" class="form-control text-center" rows="6"></textarea>
+                </div>
+
+                <div class="col-12 mt-3 text-center">
+                    <button class="btn btn-info px-5" id="decrypt_btn">Decrypt</button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- footer -->
+        <div class="text-center">
+            <p class="badge badge-info p-2">Developed by: Othman Aladlan</p>
+        </div>
+
+
+    </div>
+
+
+    
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
